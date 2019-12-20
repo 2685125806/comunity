@@ -1,4 +1,4 @@
-package com.twinkle.community.community;
+package twinkle;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
