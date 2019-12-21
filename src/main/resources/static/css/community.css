@@ -1,0 +1,13 @@
+body{
+    background-color: #f8efc0;
+}
+.main{
+    margin-top: 51px;
+    margin-left: 149px;
+    margin-right: 149px;
+    background-color: #f2dede;
+}
+.sub{
+    float: right;
+    margin-bottom: 20px;
+}

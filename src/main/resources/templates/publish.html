@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Publish 发布</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/community.css">
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+</head>
+<body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Twinkle</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">发现动态<span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">发现故事</a></li>
+
+                    </ul>
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="查询动态">
+                        </div>
+                        <button type="submit" class="btn btn-default">查询</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <!--/*@thymesVar id="user" type=""*/-->
+                        <li class="dropdown" th:if="${session.user != null}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">个人资料</a></li>
+                                <li><a href="#">消息中心</a></li>
+                                <li><a href="#">退出登录</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li th:if="${session.user == null}" >
+                            <a href="https://github.com/login/oauth/authorize?client_id=1eab490203f8b1acfb9f&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+        <div class="container-fluid main">
+            <div class="row">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="background-color: #fefffe">
+                    <h2><span class="glyphicon glyphicon-plus"  aria-hidden="true"></span>发起</h2>
+                    <hr/>
+                    <form>
+                        <div class="form-group">
+                            <label for="title">问题标题(简单扼要)</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="问题标题.....">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">补充问题(必填,参考右侧标准)</label>
+                            <textarea class="form-control" rows="3" id="description" name="description" cols="30"  data-th-rows="10"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">添加标签:</label>
+                            <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签,以,分隔.....">
+                        </div>
+
+                        <button type="submit" class="btn btn-success sub">发布</button>
+                    </form>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" style="background-color: #f4f5ed">
+                    <h3> 快捷键</h3>
+                    ---------------------------
+                    撤销：Ctrl/Command + Z
+                    重做：Ctrl/Command + Y
+                    加粗：Ctrl/Command + B
+                    斜体：Ctrl/Command + I
+                    标题：Ctrl/Command + Shift + H
+                    无序列表：Ctrl/Command + Shift + U
+                    有序列表：Ctrl/Command + Shift + O
+                    检查列表：Ctrl/Command + Shift + C
+                    插入代码：Ctrl/Command + Shift + K
+                    插入链接：Ctrl/Command + Shift + L
+                    插入图片：Ctrl/Command + Shift + G
+                    查找：Command + F
+                    替换：Command + G
+
+                    标题
+                    ---------------------------
+                    撤销：Ctrl/Command + Z
+                    重做：Ctrl/Command + Y
+                    加粗：Ctrl/Command + B
+                    斜体：Ctrl/Command + I
+                    标题：Ctrl/Command + Shift + H
+                    无序列表：Ctrl/Command + Shift + U
+                    有序列表：Ctrl/Command + Shift + O
+                    检查列表：Ctrl/Command + Shift + C
+                    插入代码：Ctrl/Command + Shift + K
+                    插入链接：Ctrl/Command + Shift + L
+                    插入图片：Ctrl/Command + Shift + G
+                    查找：Command + F
+                    替换：Command + G
+
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>
