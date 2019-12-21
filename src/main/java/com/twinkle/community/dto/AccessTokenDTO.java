@@ -1,4 +1,4 @@
-package twinkle.dto;
+package com.twinkle.community.dto;
 
 public class AccessTokenDTO {
     private String client_id;

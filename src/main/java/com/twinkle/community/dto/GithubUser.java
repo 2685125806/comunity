@@ -1,4 +1,4 @@
-package twinkle.dto;
+package com.twinkle.community.dto;
 
 public class GithubUser {
     private String name;
@@ -27,5 +27,14 @@ public class GithubUser {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    @Override
+    public String toString() {
+        return "GithubUser{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", bio='" + bio + '\'' +
+                '}';
     }
 }
