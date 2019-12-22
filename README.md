@@ -3,7 +3,7 @@
 
 <hr>
 <h2>用到了什么</h2>
-springboot+mybatis完成业务逻辑,数据库Mysql
-前端使用到了thymeleaf模板引擎
-数据库版本控制:flyway
-插件:lombok
+springboot+mybatis完成业务逻辑,数据库Mysql<br>
+前端使用到了thymeleaf模板引擎<br>
+数据库版本控制:flyway<br>
+插件:lombok<br>
