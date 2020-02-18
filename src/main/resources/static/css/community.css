@@ -1,5 +1,6 @@
 body{
     background-color: #f8efc0;
+    line-height: 1.429;
 }
 .main{
     margin-top: 51px;
@@ -14,4 +15,21 @@ body{
 .media-object{
     width: 53px;
     height: 53px;
+}
+.textDesc{
+    font-size: 12px;
+
+}
+.description{
+    font-size: 20px;
+}
+.navbarse{
+    padding-right: 106px;
+    padding-left: 117px;
+    padding-top: 6px;
+
+}
+
+.profile .section{
+    margin-top: 15px;
 }

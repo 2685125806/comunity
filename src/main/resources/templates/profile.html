@@ -4,23 +4,25 @@
     <title>Community首页</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/community.css">
-    <script type="text/javascript" src="./js/jQuery.js"></script>
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/community.css">
+    <script type="text/javascript" src="../js/jQuery.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </head>
 <body>
+<!--导航-->
         <div th:insert="~{navigation :: nav}"></div>
-        <div class="container-fluid main">
+<!--        main主题部分 main-left-->
+    <div class="container-fluid main">
             <div class="row">
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="background-color: #fefffe">
-                    <h2><span class="glyphicon glyphicon-list"  aria-hidden="true"></span>发现</h2>
+                    <h2><span th:text="${sectionName}"></span></h2>
                     <hr/>
 
                     <div class="media" th:each="question : ${pagenation.questions}" >
                         <div class="media-left">
                             <a href="#">
-                                <img class="media-object"  th:src="@{${question.user}}"  alt="图像加载失败">
+                                <img class="media-object"  th:src="@{${question.user.avatarUrl}}"  alt="图像加载失败">
                             </a>
                         </div>
                         <div class="media-body">
@@ -35,7 +37,7 @@
                             <hr>
                         </div>
                     </div>
-                    <!--分页-->
+<!--              分页-->
                     <nav aria-label="" style="float: right">
 
                         <ul class="pagination pagination-lg"   >
@@ -46,7 +48,7 @@
                                 </a>
                             </li>
 
-                            <li class="active"  th:each="page : ${pagenation.pages}" th:class="${pagenation.page == page} ?'active':''"><a th:href="@{/(page=${page})}" th:text="${page}"><span class="sr-only">(current)</span></a></li>
+                            <li class="active"  th:each="page : ${pagenation.pages}" th:class="${pagenation.page == page ?'active':''}"><a th:href="@{/(page=${page})}" th:text="${page}"><span class="sr-only">(current)</span></a></li>
 
                             <li th:if="!${pagenation.page==pagenation.totalPage}">
                                 <a href="#" aria-label="Next" th:href="@{/(page=(${pagenation.page}+1))}">
@@ -57,21 +59,16 @@
                     </nav>
 
                 </div>
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 profile" style="background-color: #f4f5ed">
+
+<!--            mian-right-->
+                    <!--根据section内容进行高亮显示等效果判断-->
+                <div class="list-group section">
+                    <a href="/profile/questions" th:class="${section=='questions'} ? 'active list-group-item':'list-group-item'">我的提问</a>
+                    <a href="/profile/replies"  th:class="${section=='replies'} ? 'active list-group-item':'list-group-item'">最新回复</a>
 
 
-                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" style="background-color: #f4f5ed">
-                    <h3> 新看点</h3>
-                    ---------------------------
-                    撤销：Ctrl/Command + Z  <br>
-                    重做：Ctrl/Command + Y  <br>
-                    加粗：Ctrl/Command + B <br>
-                    斜体：Ctrl/Command + I <br>
-                    标题：Ctrl/Command + Shift + H <br>
-                    无序列表：Ctrl/Command + Shift + U <br>
-                    有序列表：Ctrl/Command + Shift + O <br>
-
-
-
+                </div>
                 </div>
             </div>
         </div>

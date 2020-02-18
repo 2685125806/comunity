@@ -10,6 +10,11 @@ import java.io.IOException;
 
 @Component
 public class GitHubProvider {
+    /**
+     * 获取accessToken 下边整个方法都是github提供的,应该是
+     * @param accessTokenDTO
+     * @return
+     */
     public String getAccessToken(AccessTokenDTO accessTokenDTO){
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
         OkHttpClient client = new OkHttpClient();
@@ -34,18 +39,23 @@ public class GitHubProvider {
 
     }
 
+    /**
+     * 再根据accessToken发送请求查询user信息,返回json字符串
+     * @param accessToken
+     * @return
+     */
     public GithubUser getUser(String accessToken){
         OkHttpClient client = new OkHttpClient();
-        System.out.println("getUser--token--"+accessToken);
+
         Request request = new Request.Builder()
                 .url("https://api.github.com/user?access_token="+accessToken)
                 .build();
         try {
             Response response = client.newCall(request).execute();
             String string = response.body().string();
-            System.out.println(string);
+//            System.out.println(string);
             GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
-            System.out.println("githubUser--"+githubUser);
+
             return githubUser;
         } catch (IOException e) {
             return  null;

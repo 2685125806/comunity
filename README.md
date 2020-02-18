@@ -7,3 +7,11 @@ springboot+mybatis完成业务逻辑,数据库Mysql<br>
 前端使用到了thymeleaf模板引擎<br>
 数据库版本控制:flyway<br>
 插件:lombok<br>
+
+
+分页问题还未解决
+mybatis-generation  指令:
+      mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+      
+      
+      暂且完成了对登录这条链的注释解读以及getQuestion,发布于详情还未动

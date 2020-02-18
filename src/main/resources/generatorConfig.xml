@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+
+<!--        mybatis-generator的分页插件-->
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+<!--        生成注释相关配置,suppressDate 是否生成带有时间的注释 true 不生成 false 生成(默认)
+            生成注释相关配置,suppressAllComments 是否生成注释 true 不生成 false 生成(默认)-->
+       <commentGenerator>
+<!--            <property name="suppressDate" value="true"/>-->
+<!--            <property name="suppressAllComments" value="true"/>-->
+        </commentGenerator>
+
+<!--        数据库相关信息-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/blog?serverTimezone=UTC"
+                        userId="root"
+                        password="root">
+            <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+<!--model-->
+        <!--生成的model的位置  targetPackage 包位置,targetProject 相对的物理路径-->
+        <javaModelGenerator targetPackage="com.twinkle.community.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />  <!-- 去掉空格-->
+        </javaModelGenerator>
+
+        <!--使用xml方式完成相应的数据库操作,xml文件的存放位置-->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />  <!--如果目标目录下没有这个targetPackage就自动生成 -->
+        </sqlMapGenerator>
+
+        <!--接口存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.twinkle.community.mapper"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--那些表需要逆向生成对应的接口,映射文件和model-->
+        <table tableName="user"  domainObjectName="User" >
+<!--            <property name="useActualColumnNames" value="true"/>--> <!--当为false时,返回的结果是驼峰标识-->
+        </table>
+        <table tableName="question" domainObjectName="Question" ></table>
+
+    </context>
+</generatorConfiguration>
