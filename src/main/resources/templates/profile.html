@@ -11,68 +11,68 @@
 </head>
 <body>
 <!--导航-->
-        <div th:insert="~{navigation :: nav}"></div>
+<div th:insert="~{navigation :: nav}"></div>
 <!--        main主题部分 main-left-->
-    <div class="container-fluid main">
-            <div class="row">
-                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="background-color: #fefffe">
-                    <h2><span th:text="${sectionName}"></span></h2>
-                    <hr/>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="background-color: #fefffe">
+            <h2><span th:text="${sectionName}"></span></h2>
+            <hr/>
 
-                    <div class="media" th:each="question : ${pagenation.questions}" >
-                        <div class="media-left">
-                            <a href="#">
-                                <img class="media-object"  th:src="@{${question.user.avatarUrl}}"  alt="图像加载失败">
-                            </a>
-                        </div>
-                        <div class="media-body">
-
-                            <h3 class="media-heading" th:text="${question.title}"></h3>
-                           <span class="description" th:text="${question.description}"></span>
-                            <br>
-                            <span class="textDesc" th:text="${question.commentCount}"></span><span class="textDesc">个回复 •</span>
-
-                            <span class="textDesc" th:text="${question.viewCount}"></span><span class="textDesc">次浏览 •发布于</span>
-                            <span class="textDesc" th:text="${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm')}"></span>
-                            <hr>
-                        </div>
-                    </div>
-<!--              分页-->
-                    <nav aria-label="" style="float: right">
-
-                        <ul class="pagination pagination-lg"   >
-                            <li th:if="${pagenation.page!=1}" >
-                                <a href="#" aria-label="Previous" th:href="@{/(page=(${pagenation.page}-1))}">
-                                <span aria-hidden="true">&laquo;
-                               </span>
-                                </a>
-                            </li>
-
-                            <li class="active"  th:each="page : ${pagenation.pages}" th:class="${pagenation.page == page ?'active':''}"><a th:href="@{/(page=${page})}" th:text="${page}"><span class="sr-only">(current)</span></a></li>
-
-                            <li th:if="!${pagenation.page==pagenation.totalPage}">
-                                <a href="#" aria-label="Next" th:href="@{/(page=(${pagenation.page}+1))}">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
+            <div class="media" th:each="question : ${pagenation.questions}" >
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object"  th:src="@{${question.user.avatarUrl}}"  alt="图像加载失败">
+                    </a>
                 </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 profile" style="background-color: #f4f5ed">
+                <div class="media-body">
 
-<!--            mian-right-->
-                    <!--根据section内容进行高亮显示等效果判断-->
-                <div class="list-group section">
-                    <a href="/profile/questions" th:class="${section=='questions'} ? 'active list-group-item':'list-group-item'">我的提问</a>
-                    <a href="/profile/replies"  th:class="${section=='replies'} ? 'active list-group-item':'list-group-item'">最新回复</a>
+                    <h3 class="media-heading" th:text="${question.title}"></h3>
+                    <span class="description" th:text="${question.description}"></span>
+                    <br>
+                    <span class="textDesc" th:text="${question.commentCount}"></span><span class="textDesc">个回复 •</span>
 
-
-                </div>
+                    <span class="textDesc" th:text="${question.viewCount}"></span><span class="textDesc">次浏览 •发布于</span>
+                    <span class="textDesc" th:text="${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm')}"></span>
+                    <hr>
                 </div>
             </div>
+            <!--              分页-->
+            <nav aria-label="" style="float: right">
+
+                <ul class="pagination pagination-lg"   >
+                    <li th:if="${pagenation.page!=1}" >
+                        <a href="#" aria-label="Previous" th:href="@{/profile/questions(page=(${pagenation.page}-1))}">
+                                <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <li class="active"  th:each="page : ${pagenation.pages}" th:class="${pagenation.page == page ?'active':''}"><a th:href="@{/profile/questions(page=${page})}" th:text="${page}"><span class="sr-only">(current)</span></a></li>
+
+                    <li th:if="!${pagenation.page==pagenation.totalPage}">
+                        <a href="#" aria-label="Next" th:href="@{/profile/questions(page=(${pagenation.page}+1))}">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
         </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 profile" style="background-color: #f4f5ed">
+
+            <!--            mian-right-->
+            <!--根据section内容进行高亮显示等效果判断-->
+            <div class="list-group section">
+                <a href="/profile/questions" th:class="${section=='questions'} ? 'active list-group-item':'list-group-item'">我的提问</a>
+                <a href="/profile/replies"  th:class="${section=='replies'} ? 'active list-group-item':'list-group-item'">最新回复</a>
 
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--foot-->
+<div th:insert="~{foot :: foot}"></div>
 </body>
 </html>

@@ -1,21 +1,67 @@
 body{
     background-color: #f8efc0;
     line-height: 1.429;
+    font-size: 21px;
+    background-image: url(/images/bg.jpg);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
 }
+
 .main{
-    margin-top: 51px;
+    margin-top: 77px;
     margin-left: 149px;
     margin-right: 149px;
-    background-color: #f2dede;
+    border-radius: 30px;
+    /*background-color: #0f0f0f;*/
+}
+.main-border{
+    border-radius: 12px;
+    padding-left: 44px;
+    background-color: #fefffe;
+    border-right: 3px solid #f3f3f3;
+}
+.main-border h2{
+    margin-top: 27px;
+}
+
+.main-right{
+    height: 977px;
+
+}
+
+.media-object{
+    width: 53px;
+    height: 53px;
+
+}
+.alter{
+    width: 100px;
+    height: 30px;
 }
 .sub{
     float: right;
     margin-bottom: 20px;
+
 }
-.media-object{
-    width: 53px;
-    height: 53px;
+
+.navbarse{
+    padding-right: 141px;
+    padding-left: 117px;
 }
+.description{
+    text-overflow: ellipsis;
+}
+
+.toPublish{
+    text-decoration: none;
+}
+.toPublish span{
+    font-size: 79%;
+}
+
+
+
 .textDesc{
     font-size: 12px;
 
@@ -23,13 +69,40 @@ body{
 .description{
     font-size: 20px;
 }
-.navbarse{
-    padding-right: 106px;
-    padding-left: 117px;
-    padding-top: 6px;
-
-}
 
 .profile .section{
     margin-top: 15px;
+}
+.errcom{
+    margin-top: 58px;
+    margin-bottom: 48px;
+}
+.tag-css{
+
+    display: inline-block;
+    padding: 3px 11px 7px 8px;
+    width: 55px;
+    height: 23px;
+    background-color: #5bc0de;
+    border-radius: .25em;
+}
+.myTip{
+    width: 97px;
+    height: 37px;
+    background-color: #f4f5ed;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.myTip pre{
+    float: right;
+    width: 2px;
+}
+.foot{
+    margin:45px 0 45px 0;
+    font-size: 20px;
+    text-align: center;
+    color: lightgoldenrodyellow;
+}
+.foot div{
+    margin: 20px 0 20px 0;
 }

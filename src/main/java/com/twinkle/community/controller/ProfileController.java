@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -47,7 +48,10 @@ public class ProfileController {
 
                     if (users.size()!=0){
                         user = users.get(0);
-                        request.getSession().setAttribute("user",users.get(0));
+                        request.getSession().setAttribute("user",user);
+
+                        System.out.println("PC1--"+user.getAvatarUrl());
+                        System.out.println("PC1--"+user.getId());
                     }
                     break;
                 }
@@ -74,9 +78,20 @@ public class ProfileController {
             model.addAttribute("err","请先登录");
             return "index";
         }
+    }
 
-
-
+    @GetMapping("/profile/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response){
+        request.getSession().removeAttribute("user");
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            cookie.setValue("");
+            cookie.setMaxAge(0);
+        }
+        response.addCookie(new Cookie("token",""));
+//        System.out.println("logout---");
+        return "redirect:/";
     }
 
 }

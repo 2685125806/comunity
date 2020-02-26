@@ -9,6 +9,7 @@ import com.twinkle.community.provider.GitHubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,6 +40,7 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                          @RequestParam(name = "state") String state,
+                         Model model,
                          HttpServletRequest request,
                          HttpServletResponse response) throws IOException {
 
@@ -52,6 +54,7 @@ public class AuthorizeController {
 
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubUser = gitHubProvider.getUser(accessToken);
+        System.out.println("AC-callback---"+githubUser);
         if(githubUser != null){
             UserExample userExample = new UserExample();
             userExample.createCriteria().andAccountIdEqualTo(githubUser.getId());
@@ -80,6 +83,7 @@ public class AuthorizeController {
             return "redirect:/";
         }else{
             //登录失败重新登录
+          //  model.addAttribute("err","登录失败,请稍后再试");
             return "redirect:/";
         }
 

@@ -51,7 +51,8 @@ public class IndexController {
                 break;
                 }
             }
-
+        }else{
+            System.out.println("cookies中没有缓存");
         }
 
         /*分页相关*/

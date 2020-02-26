@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Community首页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/community.css">
+    <script type="text/javascript" src="../js/jQuery.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--导航-->
+<div th:insert="~{navigation :: nav}"></div>
+<!--        main主题部分 main-left-->
+<div class="container-fluid main">
+    <div class="row">
+        <!--左边-->
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="background-color: #fefffe">
+            <!--文章详情,标题-->
+            <div class="questionTitle">
+                <h2><span th:text="${questionDTO.title}"></span></h2>
+            </div>
+            <div class="media-body">
+                <span class="textDesc">作者:</span>
+                <span class="textDesc"  th:text="${questionDTO.user.name}"></span>
+                <span class="textDesc"> | 发布于</span>
+                <span class="textDesc" th:text="${#dates.format(questionDTO.gmtCreate, 'yyyy-MM-dd HH:mm')}"></span>
+                <span class="textDesc"> | </span>
+                <span class="textDesc" th:text="${questionDTO.commentCount}"></span><span class="textDesc">个回复 •</span>
+                <span class="textDesc" th:text="${questionDTO.viewCount}"></span><span class="textDesc">次浏览 </span>
+            </div>
+            <hr/>
+            <!--下边为正文详细-->
+            <div class="description">
+                <span class="textDesc" th:text="${questionDTO.description}"></span>
+            </div>
+
+
+
+            <hr/>
+            <div class="tags">
+                <span class="tag-css">
+                    <span class="glyphicon glyphicon-tags"></span>
+                    <span class="texts" th:text="${questionDTO.tag}"> </span>
+                </span>
+            </div>
+            <hr/>
+           <div>
+               <a href="/question/like" style="text-decoration:none">
+               <div class="myTip">
+                   <span class="glyphicon glyphicon-thumbs-up"></span>
+                   点赞 &nbsp;&nbsp;
+                   <span th:text="${questionDTO.likeCount}"></span>
+               </div>
+               </a>
+           </div>
+            <hr/>
+            <hr/>
+
+        </div>
+        <!--右边-->
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 profile" style="background-color: #f4f5ed">
+
+            <!--            mian-right-->
+            <!--根据section内容进行高亮显示等效果判断-->
+            <div class="list-group section">
+<!--                <a href="/profile/questions" th:class="${section=='questions'} ? 'active list-group-item':'list-group-item'">我的提问</a>-->
+<!--                <a href="/profile/replies"  th:class="${section=='replies'} ? 'active list-group-item':'list-group-item'">最新回复</a>-->
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--foot-->
+<div th:insert="~{foot :: foot}"></div>
+
+
+</body>
+</html>

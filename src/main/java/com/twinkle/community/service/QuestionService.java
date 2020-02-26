@@ -90,7 +90,7 @@ public class QuestionService {
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PagenationDTO pagenationDTO = new PagenationDTO();
         for (Question question: questionList){
-            User user = userMapper.selectByPrimaryKey(question.getId());
+            User user = userMapper.selectByPrimaryKey(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question,questionDTO);
             questionDTO.setUser(user);
@@ -101,5 +101,15 @@ public class QuestionService {
         pagenationDTO.setPagenation(page,size,count);
         System.out.println("QSID3---");
         return pagenationDTO;
+    }
+
+    public QuestionDTO getQuestionById(Integer id) {
+        Question question = questionMapper.selectByPrimaryKey(id);
+        QuestionDTO questionDTO = new QuestionDTO();
+        BeanUtils.copyProperties(question,questionDTO);
+        User user = userMapper.selectByPrimaryKey(question.getCreator());
+        questionDTO.setUser(user);
+        return questionDTO;
+
     }
 }

@@ -11,71 +11,76 @@
 </head>
 <body>
         <div th:insert="~{navigation :: nav}"></div>
+
         <div class="container-fluid main">
-            <div class="row">
-                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="background-color: #fefffe">
-                    <h2><span class="glyphicon glyphicon-list"  aria-hidden="true"></span>发现</h2>
-                    <hr/>
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 main-border" >
 
-                    <div class="media" th:each="question : ${pagenation.questions}" >
-                        <div class="media-left">
-                            <a href="#">
-                                <img class="media-object"  th:src="@{${question.user}}"  alt="图像加载失败">
-                            </a>
-                        </div>
-                        <div class="media-body">
+                <h2>
+                    <span class="glyphicon glyphicon-list"  aria-hidden="true"></span>
+                    <span>&nbsp;发现</span></h2>
+                <hr/>
 
-                            <h3 class="media-heading" th:text="${question.title}"></h3>
-                           <span class="description" th:text="${question.description}"></span>
-                            <br>
-                            <span class="textDesc" th:text="${question.commentCount}"></span><span class="textDesc">个回复 •</span>
-
-                            <span class="textDesc" th:text="${question.viewCount}"></span><span class="textDesc">次浏览 •发布于</span>
-                            <span class="textDesc" th:text="${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm')}"></span>
-                            <hr>
-                        </div>
+                <div class="media" th:each="question : ${pagenation.questions}" >
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object"  th:src="@{${question.user.getAvatarUrl()}}"  alt="图像加载失败">
+                        </a>
                     </div>
-                    <!--分页-->
-                    <nav aria-label="" style="float: right">
+                    <div class="media-body">
 
-                        <ul class="pagination pagination-lg"   >
-                            <li th:if="${pagenation.page!=1}" >
-                                <a href="#" aria-label="Previous" th:href="@{/(page=(${pagenation.page}-1))}">
+                        <a class="indexList" th:href="|/question/${question.id}|" >
+                            <h3 class="media-heading indexList"  th:text="${question.title}"></h3>
+                        </a>
+                        <span class="description" th:text="${question.description}"></span>
+                        <br>
+                        <span class="textDesc" th:text="${question.commentCount}"></span><span class="textDesc">个回复 •</span>
+
+                        <span class="textDesc" th:text="${question.viewCount}"></span><span class="textDesc">次浏览 •发布于</span>
+                        <span class="textDesc" th:text="${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm')}"></span>
+                        <hr>
+                    </div>
+                </div>
+                <!--分页-->
+                <nav aria-label="" style="float: right">
+
+                    <ul class="pagination pagination-lg"   >
+                        <li th:if="${pagenation.page!=1}" >
+                            <a href="#" aria-label="Previous" th:href="@{/(page=(${pagenation.page}-1))}">
                                 <span aria-hidden="true">&laquo;
                                </span>
-                                </a>
-                            </li>
+                            </a>
+                        </li>
 
-                            <li class="active"  th:each="page : ${pagenation.pages}" th:class="${pagenation.page == page} ?'active':''"><a th:href="@{/(page=${page})}" th:text="${page}"><span class="sr-only">(current)</span></a></li>
+                        <li class="active"  th:each="page : ${pagenation.pages}" th:class="${pagenation.page == page} ?'active':''"><a th:href="@{/(page=${page})}" th:text="${page}"><span class="sr-only">(current)</span></a></li>
 
-                            <li th:if="!${pagenation.page==pagenation.totalPage}">
-                                <a href="#" aria-label="Next" th:href="@{/(page=(${pagenation.page}+1))}">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                        <li th:if="!${pagenation.page==pagenation.totalPage}">
+                            <a href="#" aria-label="Next" th:href="@{/(page=(${pagenation.page}+1))}">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
-                </div>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 main-border main-right" >
+                <h3> 新看点</h3>
+                ---------------------------
+                撤销：Ctrl/Command + Z  <br>
+                重做：Ctrl/Command + Y  <br>
+                加粗：Ctrl/Command + B <br>
+                斜体：Ctrl/Command + I <br>
+                标题：Ctrl/Command + Shift + H <br>
+                无序列表：Ctrl/Command + Shift + U <br>
+                有序列表：Ctrl/Command + Shift + O <br>
+                <h3> 新看点</h3>
+                ---------------------------
+                撤销：Ctrl/Command + Z  <br>
 
-
-                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" style="background-color: #f4f5ed">
-                    <h3> 新看点</h3>
-                    ---------------------------
-                    撤销：Ctrl/Command + Z  <br>
-                    重做：Ctrl/Command + Y  <br>
-                    加粗：Ctrl/Command + B <br>
-                    斜体：Ctrl/Command + I <br>
-                    标题：Ctrl/Command + Shift + H <br>
-                    无序列表：Ctrl/Command + Shift + U <br>
-                    有序列表：Ctrl/Command + Shift + O <br>
-
-
-
-                </div>
+                无序列表：Ctrl/Command + Shift + U <br>
+                有序列表：Ctrl/Command + Shift + O <br>
             </div>
         </div>
-
+        <div th:insert="~{foot :: foot}"></div>
 
 </body>
 </html>
