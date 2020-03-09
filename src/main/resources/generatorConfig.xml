@@ -49,6 +49,7 @@
 <!--            <property name="useActualColumnNames" value="true"/>--> <!--当为false时,返回的结果是驼峰标识-->
         </table>
         <table tableName="question" domainObjectName="Question" ></table>
+        <table tableName="comment" domainObjectName="Comment" ></table>
 
     </context>
 </generatorConfiguration>

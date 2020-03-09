@@ -10,12 +10,13 @@
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </head>
 <body>
+<div>
 <!--导航-->
 <div th:insert="~{navigation :: nav}"></div>
 <!--        main主题部分 main-left-->
 <div class="container-fluid main">
-    <div class="row">
-        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="background-color: #fefffe">
+
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 main-border " style="background-color: #fefffe">
             <h2><span th:text="${sectionName}"></span></h2>
             <hr/>
 
@@ -42,25 +43,26 @@
 
                 <ul class="pagination pagination-lg"   >
                     <li th:if="${pagenation.page!=1}" >
-                        <a href="#" aria-label="Previous" th:href="@{/profile/questions(page=(${pagenation.page}-1))}">
-                                <span aria-hidden="true">&laquo;</span>
+                        <a href="#" aria-label="Previous" th:href="@{/profile/questions(page=1)}">
+                                <span aria-hidden="true">首页</span>
                         </a>
                     </li>
 
                     <li class="active"  th:each="page : ${pagenation.pages}" th:class="${pagenation.page == page ?'active':''}"><a th:href="@{/profile/questions(page=${page})}" th:text="${page}"><span class="sr-only">(current)</span></a></li>
 
                     <li th:if="!${pagenation.page==pagenation.totalPage}">
-                        <a href="#" aria-label="Next" th:href="@{/profile/questions(page=(${pagenation.page}+1))}">
-                            <span aria-hidden="true">&raquo;</span>
+                        <a href="#" aria-label="Next" th:href="@{/profile/questions(page=(${pagenation.getTotalPage()}))}">
+                            <span aria-hidden="true">尾页</span>
                         </a>
                     </li>
                 </ul>
             </nav>
 
         </div>
-        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 profile" style="background-color: #f4f5ed">
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 main-right main-border" style="background-color: #fefffe">
 
-            <!--            mian-right-->
+
+        <!--            mian-right-->
             <!--根据section内容进行高亮显示等效果判断-->
             <div class="list-group section">
                 <a href="/profile/questions" th:class="${section=='questions'} ? 'active list-group-item':'list-group-item'">我的提问</a>
@@ -74,5 +76,6 @@
 
 <!--foot-->
 <div th:insert="~{foot :: foot}"></div>
+</div>
 </body>
 </html>

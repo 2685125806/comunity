@@ -53,14 +53,21 @@ public class PagenationDTO {
 //f分页有问题,需要及时处理
         if(page>3 ){
             int first = page-2;
+            Integer temp =null;
             for (int i=0;i<5;i++){
+               temp =(first+i);
+               if (temp>totalPage){
+                   break;
+               }
                 pages.add(i, (first+i));
             }
-            System.out.println("if----");
+
+//            System.out.println("if----");
         }else{
-            System.out.println("else------");
-            for (int i=0;i<totalPage;i++){
+//            System.out.println("else------");
+            for (int i=0;i<5;i++){
                 pages.add(i, (i+1));
+                System.out.println(pages);
             }
         }
     }

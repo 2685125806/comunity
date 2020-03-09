@@ -31,34 +31,38 @@ public class IndexController {
                         @RequestParam(name = "page",defaultValue = "1") Integer page,
                         @RequestParam(name ="size",defaultValue = "5") Integer size
                         ){
-        Cookie[] cookies = request.getCookies();
-        //通过查看cookie是否为null来判断缓存中是否有用户信息,如果有就直接获取并返回到页面进行渲染
-        if (cookies != null){
-//        System.out.println("cookies length ---"+cookies.length);
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                UserExample userExample = new UserExample();
-//
-                //System.out.printf("index-user==="+userExample.createCriteria().andTokenEqualTo(token));
-                 userExample.createCriteria().andTokenEqualTo(token);
-
-                List<User> users  = userMapper.selectByExample(userExample);
-
-                if (users.size()!=0){
-                    request.getSession().setAttribute("user",users.get(0));
-                     }
-                break;
-                }
-            }
-        }else{
-            System.out.println("cookies中没有缓存");
-        }
+       checkUser(request);
 
         /*分页相关*/
         PagenationDTO pagenation = questionService.getQuestionList(page,size);
         model.addAttribute("pagenation",pagenation);
 
         return "index";
+    }
+
+    public void checkUser(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        //通过查看cookie是否为null来判断缓存中是否有用户信息,如果有就直接获取并返回到页面进行渲染
+        if (cookies != null){
+//        System.out.println("cookies length ---"+cookies.length);
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("token")){
+                    String token = cookie.getValue();
+                    UserExample userExample = new UserExample();
+//
+                    //System.out.printf("index-user==="+userExample.createCriteria().andTokenEqualTo(token));
+                    userExample.createCriteria().andTokenEqualTo(token);
+
+                    List<User> users  = userMapper.selectByExample(userExample);
+
+                    if (users.size()!=0){
+                        request.getSession().setAttribute("user",users.get(0));
+                    }
+                    break;
+                }
+            }
+        }else{
+            System.out.println("cookies中没有缓存");
+        }
     }
 }

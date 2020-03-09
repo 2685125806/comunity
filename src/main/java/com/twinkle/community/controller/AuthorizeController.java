@@ -53,6 +53,7 @@ public class AuthorizeController {
 
 
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
+        System.out.println("accessToken--"+accessToken);
         GithubUser githubUser = gitHubProvider.getUser(accessToken);
         System.out.println("AC-callback---"+githubUser);
         if(githubUser != null){
