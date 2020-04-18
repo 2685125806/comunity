@@ -29,6 +29,7 @@
                 <hr/>
 
                 <div class="media" th:each="question : ${pagenation.questions}" >
+<!--                    <span th:text="${pagenation.questions.size()}"></span>-->
                     <div class="media-left">
                         <a href="#">
                             <img class="media-object"  th:src="@{${question.user.getAvatarUrl()}}"  alt="图像加载失败">

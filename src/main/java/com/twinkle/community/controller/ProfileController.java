@@ -33,14 +33,14 @@ public class ProfileController {
                           HttpServletRequest request,
                           @RequestParam(name = "page",defaultValue = "1") Integer page,
                           @RequestParam(name = "size",defaultValue = "5") Integer size){
-
+//        System.out.println("PC---action--"+action);
         Cookie[] cookies = request.getCookies();
         User user = null;
         /*查看缓存是否存有user信息,有就根据token去数据库查询user并返回到页面渲染*/
         if (cookies != null){
 //        System.out.println("cookies length ---"+cookies.length);
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("token")){
+                if ("token".equals(cookie.getName())&&cookie.getValue()!=""){
                     String token = cookie.getValue();
                     UserExample userExample = new UserExample();
                     userExample.createCriteria().andTokenEqualTo(token);
@@ -83,13 +83,15 @@ public class ProfileController {
     @GetMapping("/profile/logout")
     public String logout(HttpServletRequest request,
                          HttpServletResponse response){
-        request.getSession().removeAttribute("user");
+        request.getSession().invalidate();      //清session
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
-            cookie.setValue("");
             cookie.setMaxAge(0);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            System.out.println(cookie.getValue());
         }
-        response.addCookie(new Cookie("token",""));
+//        response.addCookie(new Cookie("token",""));
 //        System.out.println("logout---");
         return "redirect:/";
     }

@@ -1,11 +1,9 @@
 body{
-    background-color: transparent;
+    background-color: #F6F6F6;
     line-height: 1.429;
     font-size: 21px;
-    background-image: url(/static/images/bg.jpg);
-
-
-    /*background-repeat:no-repeat;*/
+    /*background-image: url("../images/bg.jpg");*/
+    /*background-repeat:repeat;*/
     /*background-size:100% 100%;*/
     /*-moz-background-size:100% 100%;*/
 }
@@ -13,8 +11,8 @@ body{
 
 .main{
     margin-top: 77px;
-    margin-left: 173px;
-    margin-right: 173px;
+    margin-left: 94px;
+    margin-right: 94px;
     border-radius: 30px;
     /*background-color: #0f0f0f;*/
 }
@@ -80,11 +78,11 @@ body{
 
 
 .textDesc{
-    font-size: 12px;
+    font-size: 15px;
 
 }
 .description{
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .profile .section{
@@ -98,17 +96,35 @@ body{
     margin-right: 5px;
     padding-top: 6px;
 }
+.mySelect{
+ /*float: left;*/display: flex;
+}
+.mySelect div{
+    margin-left:4px;
+}
+
 .myTip{
     width: 97px;
     height: 37px;
     background-color: #f4f5ed;
+    border-radius: 25px;
     padding-left: 10px;
-    padding-top: 10px;
+    padding-top: 2px;
+}
+.myTip span{
+    font-size: 17px;
+}
+.myTip .like{
+    padding-left: 3px;
 }
 .myTip pre{
     float: right;
     width: 2px;
 }
+.myTips{
+    padding-left: 19px;
+}
+
 .jumbotron{
     margin: 108px;
     padding-left: 93px;
@@ -140,4 +156,5 @@ body{
 }
 #comment button{
     float: right;
+    margin-bottom: 10px;
 }

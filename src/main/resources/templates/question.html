@@ -3,10 +3,16 @@
 <head>
     <title>Community首页</title>
     <meta http-equiv="Content-Type" content="application/json; charset=UTF-8" />
+    <link rel="stylesheet" href="../static/editormd/css/editormd.preview.css" />
+<!--    <script src="../static/js/jquery.min.js"></script>-->
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/community.css">
     <script type="text/javascript" src="../js/jQuery.js"></script>
+    <script type="text/javascript" src="../editormd/editormd.js"></script>
+    <script type="text/javascript" src="../editormd/lib/marked.min.js"></script>
+    <script type="text/javascript" src="../editormd/lib/prettify.min.js"></script>
+
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -31,17 +37,29 @@
                 <span class="textDesc" th:text="${questionDTO.viewCount}"></span><span class="textDesc">次浏览 </span>
 
 
-                <a  class="toPublish" th:href="|/publish/${questionDTO.id}|">
-                    <span class="glyphicon glyphicon-pencil label label-primary ">&nbsp;编辑</span>
-                </a>
+                <li th:if="${session.user != null}" >
+                    <a  class="toPublish" th:href="|/publish/${questionDTO.id}|">
+                        <span class="glyphicon glyphicon-pencil label label-primary ">&nbsp;编辑</span>
+                    </a>
+                </li>
+
 
 
             </div>
             <hr/>
             <!--下边为正文详细-->
-            <div class="description">
-                <span class="textDesc" th:text="${questionDTO.description}"></span>
+<!--            <div class="description">-->
+<!--                <span class="textDesc" th:text="${questionDTO.description}"></span>-->
+<!--            </div>-->
+            <div class="description" id="text-markdown-view">
+                <textarea style="display:none;" th:text="${questionDTO.description}"></textarea>
             </div>
+
+            <script type="text/javascript">
+                $(function() {
+                    editormd.markdownToHTML("text-markdown-view", {});
+                });
+            </script>
 
 
 
@@ -53,15 +71,23 @@
                 </span>
             </div>
             <hr/>
-           <div>
-               <a href="/question/like" style="text-decoration:none">
+           <div class= "mySelect">
                <div class="myTip">
+                   <a href="/question/like" style="text-decoration:none">
                    <span class="glyphicon glyphicon-thumbs-up"></span>
-                   点赞 &nbsp;&nbsp;
-                   <span th:text="${questionDTO.likeCount}"></span>
+                   <span>点赞</span>
+                   <span class="like" th:text="${questionDTO.likeCount}"></span>
+                   </a>
                </div>
-               </a>
+               <div class="myTip myTips">
+                   <a href="/question/collection" style="text-decoration:none">
+                       <span class="glyphicon glyphicon-star-empty"></span>
+                       <span>收藏</span>
+                   </a>
+               </div>
+
            </div>
+            <div>
             <hr/>
             <!--评论-->
             <form id="comment" method="post" action="/Comment"   >
@@ -71,7 +97,7 @@
                 </div>
                 <button type="submit" class="btn btn-success">提交</button>
             </form>
-
+            </div>
         </div>
         <!--右边-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 main-right main-border" style="background-color: #fefffe">
